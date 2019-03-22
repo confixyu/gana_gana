@@ -10,13 +10,27 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    rewards = []
-    with open('reward.csv', newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-        for row in spamreader:
+   return render_template('app.html')
+
+@app.route("/reward")
+def reward():
+   rewards = []
+   with open('reward.csv', newline='') as csvfile:
+         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+         for row in spamreader:
             print(', '.join(row))
             rewards.append(row[0])
-    return render_template('app.html', rewards = rewards)
+   return render_template('reward.html', rewards = rewards)
+
+@app.route("/participant")
+def participant():
+   participants = []
+   with open('participants.csv', newline='') as csvfile:
+         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+         for row in spamreader:
+            print(', '.join(row))
+            participants.append(row[0])
+   return render_template('participant.html', participants = participants)
 
 # Upload file
 @app.route('/upload')

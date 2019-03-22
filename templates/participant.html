@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div>
+    <h2>Participants</h2>
+
+    <form action = "http://localhost:8000/uploader" method = "POST" 
+        enctype = "multipart/form-data">
+        <input type = "file" name = "file" />
+        <input type = "submit" value="Upload"/>
+    </form>
+
+    <ul>
+        {% for p in participants %}
+            <li>{{ p }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
